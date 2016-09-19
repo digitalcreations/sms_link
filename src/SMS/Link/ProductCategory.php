@@ -1,0 +1,48 @@
+<?php
+
+namespace DC\SMS\Link;
+
+class ProductCategory
+{
+    const CPA_REGULAR_RINGTONES = 1;
+    const CPA_REGULAR_RINGBACK_TONES = 2;
+    const CPA_REGULAR_MUSIC_FULL_TRACK = 3;
+    const CPA_REGULAR_WALLP_ANIM = 4;
+    const CPA_REGULAR_VIDEOS = 5;
+    const CPA_REGULAR_NEWS = 6;
+    const CPA_REGULAR_ADULT = 7;
+    const CPA_REGULAR_LOTTERY = 8;
+    const CPA_REGULAR_APPLICATIONS = 9;
+    const CPA_REGULAR_VOTING = 10;
+    const CPA_REGULAR_MOBILE_MARKETING = 11;
+    const CPA_REGULAR_INTERNET_PORTALS = 12;
+    const CPA_REGULAR_CHAT = 13;
+    const CPA_REGULAR_COMMUNITY = 14;
+    const CPA_REGULAR_INFO_SERVICE = 15;
+    const CPA_REGULAR_MIXED_CONTENT = 16;
+    const GAS_CHARITY = 17;
+    const GAS_CONCERT_TICKETS = 18;
+    const GAS_MEMBERSHIP_FEE = 19;
+    const GAS_PHYSICAL_GOODS_NON_FOOD = 20;
+    const MEDIA_CPA_INTERNET_TV = 21;
+    const MEDIA_CPA_INTERNET_FILM = 22;
+    const MEDIA_CPA_E_BOOK = 23;
+    const MEDIA_CPA_E_MAGAZINE = 24;
+    const MEDIA_CPA_E_NEWSPAPER = 25;
+    const MEDIA_CPA_INTERNET_MUSIC = 26;
+    const CPA_REGULAR_OTHER = 27;
+    const GAS_CINEMA_TICKETS = 28;
+    const GAS_BOOK = 29;
+    const GAS_MUSIC_CD = 30;
+    const GAS_MAGAZINE = 31;
+    const GAS_ACCESS_FEE_SPORTS = 32;
+    const GAS_ZERORATED_SMS = 33;
+    const GAS_CLASSIFIED_ADS = 34;
+    const GAS_CLASSIFIED_ADS_ABOVE_PRICE_200 = 35;
+    const MANUAL_SERVICES = 37;
+    const PHYSICAL_GOODS_FOOD_DRINK = 38;
+    const TRANSPORT_BUS = 39;
+    const TRANSPORT_TRAIN = 40;
+    const HEALTH_SERVICES = 41;
+    const PARKING = 42;
+} 
