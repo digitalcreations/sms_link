@@ -10,9 +10,9 @@
         </testsuite>
     </testsuites>
     <filter>
-        <blacklist>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
+        <whitelist>
+            <directory suffix=".php">src/Tests/</directory>
+        </whitelist>
     </filter>
     <logging>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
