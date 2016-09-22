@@ -23,7 +23,7 @@ class APICaller {
 
         $headers = array(
             'Content-Type: application/json',
-            'Authorization: Basic ' . base64_encode("{$configuration->username}:{$configuration->password}"),
+            'Authorization: Basic ' . base64_encode("{$this->configuration->username}:{$this->configuration->password}"),
             'Length: ' . count($data)
         );
 
@@ -35,7 +35,7 @@ class APICaller {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+        curl_setopt($ch, CURLOPT_FAILONERROR, 0);
 
         $result = curl_exec($ch);
         if (curl_errno($ch)) {
@@ -44,7 +44,7 @@ class APICaller {
 
         $info = curl_getinfo($ch);
         if ($info['http_code'] != 200) {
-            throw new GatewayException("Received HTTP error code SMS Gateway.", $info['http_code']);
+            throw new GatewayException("Received HTTP error code SMS Gateway: " . $result, $info['http_code']);
         }
         curl_close($ch);
 

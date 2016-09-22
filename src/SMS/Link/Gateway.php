@@ -19,7 +19,6 @@ class Gateway implements \DC\SMS\GatewayInterface {
     }
 
     private function call(array $dataArray) {
-//        print_r(json_encode($dataArray));die();
         $exception = null;
         foreach ($this->configuration->endpoint as $endpoint) {
             try {
@@ -60,7 +59,7 @@ class Gateway implements \DC\SMS\GatewayInterface {
         ];
 
         if ($message->getSilentBilling()) {
-            $session["customParameter"]["chargeOnly"] = "true"; // sic: use string "true", not boolean true
+            $session["customParameters"]["chargeOnly"] = "true"; // sic: use string "true", not boolean true
         }
 
         if ($message->getTTL() > 0) {
@@ -70,6 +69,12 @@ class Gateway implements \DC\SMS\GatewayInterface {
         if ($message->getTariff() != null) {
             $session["tariff"] = $message->getTariff();
             $session["productDescription"] = $message->getProductDescription();
+            
+            if (empty($this->configuration->deliveryReportGate)) {
+                throw new GatewayException("Delivery report gate must be set for premium messages");
+            }
+            // The API allows multiple delivery report gates, hence the array. We only support one.
+            $session["deliveryReportGates"] = array($this->configuration->deliveryReportGate);
 
             if ($message->getSenderTypeOfNumber() != \DC\SMS\TypeOfNumber::SHORTNUMBER)
             {
