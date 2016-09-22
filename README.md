@@ -24,7 +24,7 @@ require_once "vendor/autoload.php";
 $configuration = new \DC\SMS\Link\Configuration();
 $configuration->username = "username";
 $configuration->password = "password";
-$configuration->partnerId = "partnerId";
+$configuration->platformId = "platformId";
 $configuration->platformPartnerId = "platformPartnerId";
 $gateway = new \DC\SMS\Link\Gateway($configuration);
 

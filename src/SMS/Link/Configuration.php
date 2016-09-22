@@ -12,7 +12,7 @@ class Configuration {
     public $defaultSender = "2270";
     public $username;
     public $password;
-    public $partnerId;
+    public $platformId;
     public $platformPartnerId;
 
     /**

@@ -1,7 +1,6 @@
 {
     "name": "dc/sms_link",
     "description": "Implementation of Link Mobility's Common Platform REST API over HTTP(S)",
-    "minimum-stability": "stable",
     "homepage": "http://github.com/digitalcreations/sms_link",
     "license": "MIT",
     "authors": [

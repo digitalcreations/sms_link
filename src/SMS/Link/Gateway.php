@@ -54,7 +54,7 @@ class Gateway implements \DC\SMS\GatewayInterface {
             "sourceTON" => $message->getSenderTypeOfNumber(),
             "destination"=> $destination,
             "destinationTON" => "MSISDN",
-            "partnerId" => $this->configuration->partnerId,
+            "platformId" => $this->configuration->platformId,
             "platformPartnerId" => $this->configuration->platformPartnerId,
             "userData" => $message->getText()
         ];
