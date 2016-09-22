@@ -4,6 +4,7 @@ namespace DC\SMS\Link;
 
 class DeliveryReport extends \DC\SMS\DeliveryReportBase {
     private $deliveryReport;
+    private $rawReport;
 
     const LOOKUP_FINAL = 0;
     const LOOKUP_DELIVERED = 1;
@@ -61,7 +62,13 @@ class DeliveryReport extends \DC\SMS\DeliveryReportBase {
 
     function __construct($json)
     {
+        $this->rawReport = $json;
         $this->deliveryReport = json_decode($json);
+    }
+
+    function getRawReport()
+    {
+        return $this->rawReport;
     }
 
     function getMessageIdentifier()

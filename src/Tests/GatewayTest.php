@@ -13,6 +13,7 @@ class GatewayTest extends \PHPUnit_Framework_TestCase {
         $configuration->password = "bar";
         $configuration->platformId = "MyPlatformId";
         $configuration->platformPartnerId = "MyPlatformPartnerId";
+        $configuration->deliveryReportGate = "abc";
         $configuration->defaultSender = "phpunit";
         return $configuration;
     }
@@ -52,7 +53,7 @@ class GatewayTest extends \PHPUnit_Framework_TestCase {
 
     public function testSendMessageWithTariff()
     {
-        $jsonIn = '{"source":"1980","sourceTON":"SHORTNUMBER","destination":"+4712345678","destinationTON":"MSISDN","platformId":"MyPlatformId","platformPartnerId":"MyPlatformPartnerId","userData":"Does this work?","tariff":100,"productDescription":null,"productCategory":19}';
+        $jsonIn = '{"source":"1980","sourceTON":"SHORTNUMBER","destination":"+4712345678","destinationTON":"MSISDN","platformId":"MyPlatformId","platformPartnerId":"MyPlatformPartnerId","userData":"Does this work?","tariff":100,"productDescription":null,"deliveryReportGates":["abc"],"productCategory":19}';
         $jsonOut = '{"messageId":"Dcshuhod0PMAAAFQ+/PbnR3x","resultCode":1005,"description":"Queued"}';
 
         $mockCaller = $this->createMock('\DC\SMS\Link\APICaller');
@@ -111,10 +112,12 @@ class GatewayTest extends \PHPUnit_Framework_TestCase {
 
     public function testParseDeliveryReport() {
         $api = new \DC\SMS\Link\Gateway($this->getConfiguration());
+        $deliveryReport = '{"refId": "0", "id": "Dcshuhod0PMAAAFQ+/PbnR3x", "operator": "no.telenor", "sentTimestamp": "2015-11-19T09:37:35Z", "timestamp": "2015-11-19T09:37:00Z", "resultCode": 1001, "operatorResultCode": "2", "segments": 1, "gateCustomParameters": {}, "customParameters": { "received": "2015-11-19 10:37:36" }}';
 
-        $dlr = $api->parseDeliveryReport('{"refId": "0", "id": "Dcshuhod0PMAAAFQ+/PbnR3x", "operator": "no.telenor", "sentTimestamp": "2015-11-19T09:37:35Z", "timestamp": "2015-11-19T09:37:00Z", "resultCode": 1001, "operatorResultCode": "2", "segments": 1, "gateCustomParameters": {}, "customParameters": { "received": "2015-11-19 10:37:36" }}');
+        $dlr = $api->parseDeliveryReport($deliveryReport);
         $this->assertEquals("Dcshuhod0PMAAAFQ+/PbnR3x", $dlr->getMessageIdentifier());
         $this->assertEquals(\DC\SMS\DeliveryState::Delivered, $dlr->getState());
+        $this->assertEquals($deliveryReport, $dlr->getRawReport());
         $this->assertTrue($dlr->isBilled());
         $this->assertTrue($dlr->isDelivered());
         $this->assertTrue($dlr->isFinalDeliveryReport());
