@@ -130,4 +130,12 @@ class DeliveryReport extends \DC\SMS\DeliveryReportBase {
     {
         return new Response(false, (string)$this->deliveryReport->id);
     }
+
+    /**
+     * @return string Reference ID
+     */
+    function getReferenceId()
+    {
+        return $this->deliveryReport->refId;
+    }
 }
