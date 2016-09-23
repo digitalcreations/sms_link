@@ -84,6 +84,11 @@ class Gateway implements \DC\SMS\GatewayInterface {
             if ($this->configuration->isGoodsAndServices) {
                 $session["productCategory"] = $this->configuration->productCategory;
             }
+        } else {
+            if (!empty($this->configuration->deliveryReportGate)) {
+                // Enable delivery reports for non-premium messages too
+                $session["deliveryReportGates"] = array($this->configuration->deliveryReportGate);
+            }
         }
 
         $result = $this->call($session);
