@@ -58,6 +58,11 @@ class Gateway implements \DC\SMS\GatewayInterface {
             "userData" => $message->getText()
         ];
 
+        if (!empty($message->getReferenceId()))
+        {
+            $session["refId"] = $message->getReferenceId();
+        }
+
         if ($message->getSilentBilling()) {
             $session["customParameters"]["chargeOnly"] = "true"; // sic: use string "true", not boolean true
         }
