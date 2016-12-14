@@ -20,7 +20,7 @@ class GatewayTest extends \PHPUnit_Framework_TestCase {
 
     public function testSendMessage()
     {
-        $jsonIn = '{"source":"Vegard","sourceTON":"ALPHANUMERIC","destination":"+4712345678","destinationTON":"MSISDN","platformId":"MyPlatformId","platformPartnerId":"MyPlatformPartnerId","userData":"Does this work?"}';
+        $jsonIn = '{"source":"Vegard","sourceTON":"ALPHANUMERIC","destination":"+4712345678","destinationTON":"MSISDN","platformId":"MyPlatformId","platformPartnerId":"MyPlatformPartnerId","userData":"Does this work?","deliveryReportGates":["abc"]}';
         $jsonOut = '{"messageId":"Dcshuhod0PMAAAFQ+/PbnR3x","resultCode":1005,"description":"Queued"}';
 
         $mockCaller = $this->createMock('\DC\SMS\Link\APICaller');
@@ -76,7 +76,7 @@ class GatewayTest extends \PHPUnit_Framework_TestCase {
 
     public function testSendMessageWithTTL()
     {
-        $jsonIn = '{"source":"Vegard","sourceTON":"ALPHANUMERIC","destination":"+4712345678","destinationTON":"MSISDN","platformId":"MyPlatformId","platformPartnerId":"MyPlatformPartnerId","userData":"Does this work?","relativeValidityTime":3600000}';
+        $jsonIn = '{"source":"Vegard","sourceTON":"ALPHANUMERIC","destination":"+4712345678","destinationTON":"MSISDN","platformId":"MyPlatformId","platformPartnerId":"MyPlatformPartnerId","userData":"Does this work?","relativeValidityTime":3600000,"deliveryReportGates":["abc"]}';
         $jsonOut = '{"messageId":"Dcshuhod0PMAAAFQ+/PbnR3x","resultCode":1005,"description":"Queued"}';
 
         $mockCaller = $this->createMock('\DC\SMS\Link\APICaller');
